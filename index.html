@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Africa Secret - PayPay Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary:#12de12;
+      --dark:#004d00;
+      --light:#e6ffe6;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body {
+      font-family:'Poppins',sans-serif;
+      background:#f9f9f9; color:#333;
+    }
+
+    /* ✅ Préloader animé */
+    #preloader {
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      width:100%; height:100vh;
+      background:var(--primary); color:#fff;
+      position:fixed; top:0; left:0; z-index:9999;
+      text-align:center;
+    }
+    .logo-circle {
+      width:150px; height:150px;
+      border:5px solid #fff; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      animation:spin 3s linear infinite;
+      margin-bottom:20px;
+    }
+    .logo-circle img { width:120px; height:120px; border-radius:50px; }
+    .title span {
+      display:inline-block; font-size:40px; font-weight:bold;
+      animation:bounce 1s infinite alternate;
+    }
+    .title span:nth-child(odd){ animation-delay:0.2s; }
+    .title span:nth-child(even){ animation-delay:0.4s; }
+    .loading-icon {
+      font-size:55px; margin-top:15px;
+      animation:pulse 1s infinite;
+    }
+    .bottom-message {
+      position:absolute; bottom:60px;
+      font-size:16px; font-weight:600;
+      animation:fadeIn 2s ease-in-out infinite alternate;
+    }
+    .shop-btn {
+      position:absolute; bottom:20px;
+      background:#fff; color:var(--primary);
+      padding:12px 24px; border-radius:30px;
+      font-weight:bold; text-decoration:none;
+      animation:pulse 1.5s infinite;
+    }
+    @keyframes spin { from{transform:rotate(0);} to{transform:rotate(360deg);} }
+    @keyframes bounce { from{transform:translateY(0);} to{transform:translateY(-10px);} }
+    @keyframes pulse { 0%{opacity:0.5;} 50%{opacity:1;} 100%{opacity:0.5;} }
+    @keyframes fadeIn { from{opacity:0.3;} to{opacity:1;} }
+
+    /* ✅ Page d’accueil */
+    header {
+      background: linear-gradient(90deg, #006400, #32CD32);
+      color: white; text-align: center;
+      padding: 2rem 1rem;
+    }
+    header h1 { margin: 0; font-size: 2.5rem; }
+
+    /* ✅ Style du menu */
+    .navbar {
+      background: var(--dark);
+      color: white;
+      padding: 0.5rem 1rem;
+      position: relative;
+    }
+    .nav-container {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .brand { font-weight:bold; color:white; text-decoration:none; }
+    .menu-toggle {
+      background:none; border:none; color:white; font-size:1.5rem;
+      cursor:pointer; display:none;
+    }
+    .nav-links {
+      list-style:none; display:flex; gap:1rem;
+    }
+    .nav-links li a {
+      color:white; text-decoration:none; font-weight:bold;
+    }
+
+    .hero {
+      text-align: center; padding: 3rem 1rem;
+      background: var(--light);
+    }
+    .hero h2 { font-size: 2rem; margin-bottom: 1rem; }
+    .products {
+      display: flex; flex-wrap: wrap;
+      justify-content: center; padding: 2rem;
+    }
+    .card {
+      background: white; border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      margin: 1rem; padding: 1.5rem;
+      width: 300px; text-align: center;
+    }
+    .card h3 { color: #006400; }
+    footer {
+      background: var(--dark); color: white;
+      text-align: center; padding: 1rem;
+    }
+
+    /* ✅ Adaptation mobile */
+    @media (max-width:600px){
+      .title span { font-size:28px; }
+      .logo-circle { width:120px; height:120px; }
+      .logo-circle img { width:115px; height:115px; border-radius:50px; }
+      .loading-icon { font-size:40px; }
+      .bottom-message { font-size:12px; }
+      .shop-btn { padding:10px 20px; font-size:14px; }
+
+      header h1 { font-size:1.8rem; }
+      .hero h2 { font-size:1.5rem; }
+      .products { flex-direction:column; align-items:center; }
+      .card { width:90%; }
+
+      .menu-toggle { display:block; }
+      .nav-links {
+        display:none; flex-direction:column; background:var(--dark);
+        position:absolute; top:60px; right:10px; width:auto; padding:1rem; border-radius:8px; /* arrondi pour un look moderne */box-shadow:0 2px 6px rgba(0,0,0,0.2);
+      }
+      .nav-links.show { display:flex; }
+      .nav-links li { margin:0.5rem 0; text-align:center; }
+      #contact-icons a { margin:0 5px; color:white; font-size:1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ✅ Préloader -->
+<div id="preloader">
+  <div class="logo-circle">
+    <img src="images/logo_cliena.jpeg" alt="Logo">
+  </div>
+  <h1 class="title">
+    <span>A</span><span>F</span><span>R</span><span>I</span><span>C</span><span>A</span>
+    <span>S</span><span>E</span><span>C</span><span>R</span><span>E</span><span>T</span>
+  </h1>
+  <i class="fas fa-store loading-icon"></i>
+  <a href="cliena.html" class="shop-btn">Voir nos boutiques</a>
+</div>
+
+<!-- ✅ Page d’accueil -->
+<header>
+  <h1>Africa Secret</h1>
+  <p>Produits 100% Naturels & BIO</p>
+</header>
+
+<!-- ✅ Menu hamburger -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="#" class="brand">Africa Secret</a>
+    <button class="menu-toggle" id="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#" id="home-link">Accueil</a></li>
+      <li><a href="cliena.html">Produits</a></li>
+      <li>
+        <a href="#" id="contact-link">Contact</a>
+        <div id="contact-icons" style="display:none; margin-top:10px;">
+          <a href="https://wa.me/22879539294" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:sol.infotech10@gmail.com"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.facebook.com/marketplace/item/791895487276760/" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a href="https://tiktok.com/@freenet.technolog" target="_blank"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <h2>Bienvenue chez Africa Secret</h2>
+  <p>Découvrez nos solutions naturelles pour votre bien-être.</p>
+</section>
+
+<section class="products">
+  <div class="card">
+    <h3>SIROP ANTI-HÉMORROÏDES</h3>
+    <p>Complément alimentaire 100% naturel. 
+    Traite les hémorroïdes internes, lutte contre la faiblesse sexuelle, ulcères, infections et règles douloureuses.</p>
+    <p><strong>Posologie :</strong> Un verre matin et soir</p>
+    <p><strong>Contact :</strong> +228 90 57 12 07 / +228 79 53 92 94</p>
+  </div>
+  <div class="card">
+    <h3>RACINE</h3>
+    <p>Traite efficacement la faiblesse sexuelle, 
+    l’éjaculation précoce, l’érection molle et le manque d’appétit sexuel.</p>
+    <p><strong>Contact :</strong> +228 79 53 92 94</p>
+    <p><strong>Livraison disponible</strong></p>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 Africa Secret - Tous droits réservés</p>
+</footer>
+
+<script>
+  // ✅ Toggle menu
+  document.getElementById("menu-toggle").addEventListener("click", () => {
+    document.getElementById("nav-links").classList.toggle("show");
+  });
+
+  // ✅ Accueil -> recharge la page avec préloader
+  document.getElementById("home-link").addEventListener("click", (e) => {
+    e.preventDefault();
+    location.reload();
+  });
+
+  // ✅ Contact -> affiche/masque les icônes
+  document.getElementById("contact-link").addEventListener("click", (e) => {
+    e.preventDefault();
+    const icons = document.getElementById("contact-icons");
+    icons.style.display = (icons.style.display === "none") ? "block" : "none";
+  });
+
+  // ✅ Masquer le préloader après 9 secondes
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      document.getElementById("preloader").style.display = "none";
+    }, 2000);
+  });
+</script>
+
+</body>
+</html>
+
